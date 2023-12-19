@@ -1,317 +1,448 @@
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
+    <title>PRVT FAQ</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Microsoft YaHei', 'Noto Sans', 'Noto Serif', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; 
+            color: #333; 
+        }
+
+
+        /* Darkmode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #000000;
+                color: #ffffff;
+            }
+        }
+
+        header {
+            background-color: #333333; 
+            margin-top: 0px; 
+            width: 100%;
+            height: 80px;
+            line-height:0px;
+            text-align: center;
+            color: #ffffff;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        select {
+            background-color: #006400;
+            color: #ffffff;
+            padding: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 0px;
+            margin-right: 10px;
+            height: 35px; 
+            align: center;
+        }
+
+        main {
+            margin-top: 100px; 
+            padding: 30px;
+        }
+
+        footer {
+            background-color: #333333; 
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
-
-
 <body>
-    <h1 style="text-align: center;">FAQ</h1>
+    <header>
+        <h1>PRVT FAQ</h1>
+        <select id="languageSelector" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="zh-CN">简体中文</option>
+            <option value="ja">日本語</option>
+            <option value="zh-TW">繁體中文</option>
+        </select>
+    </header>
+<main id="faqContent">
+</main>
+
+<footer>
+    Copyright © 2023 Binspir Technologies
+</footer>
+
+<script>
+   
+    var userLanguage = navigator.language || navigator.userLanguage;
+    var defaultLanguage = "en"; 
+
+  
+    function setInitialLanguage() {
+        var supportedLanguages = ["en", "es", "zh-CN", "ja", "zh-TW"];
+        var matchedLanguage = supportedLanguages.find(lang => userLanguage.toLowerCase().includes(lang.toLowerCase()));
+
+        if (matchedLanguage) {
+            document.getElementById("languageSelector").value = matchedLanguage;
+        } else {
+            document.getElementById("languageSelector").value = defaultLanguage;
+        }
+
+        changeLanguage();
+    }
+
+    function changeLanguage() {
+        var language = document.getElementById("languageSelector").value;
+        var faqContent = document.getElementById("faqContent");
+
+        faqContent.innerHTML = "";
+        var faqHTML  = "";
+
+        switch (language) {
+            case "en":
+                faqHTML = getEnglishContent();
+                break;
+            case "es":
+                faqHTML = getSpanishContent();
+                break;
+            case "zh-CN":
+                faqHTML = getChineseContent();
+                break;
+            case "ja":
+                faqHTML = getJapaneseContent();
+                break;
+            case "zh-TW":
+                faqHTML = getTraditionalChineseContent();
+                break;
+        }
+        faqContent.innerHTML = faqHTML + getMoreContent();
+    }
+
+    function getEnglishContent() {
+        return `<h3>Q1: "What if I forget the passcode?". </h3>
+            <p>
+            1. Update the App to V4.0 onwards.<br>
+            2. Enter "911911" on the keypad and you will see a help list. <br>
+            3. Tap "Forget Passcode?" <br>
+            4. Setup and verify an email first if you haven't yet <br>
+            5. Tap "Forget Passcode?" (again) and you will receive a temporary verification code <br>
+            6. Enter the verification on the keypad to initiate the passcode reset process.<br>
+            </p><br>`
+            +
+            `<h3>Q2: How to transfer data to a new iPhone/iPad device?</h3>
+            <p>
+            1. During the activation of the new device, iOS will prompt whether to use the system's built-in data migration tool to transfer data such as contacts, photos, personal settings, and third-party app data. This process will copy the data from this app to the new device as well. <br>
+            2. For manual migration, you can use the app's built-in WiFi HTTP page on the old device to download data to Mac/PC. Then, using the same method on the new device, upload the data in bulk through the HTTP page. <br>
+            </p><br>`
+            +
+            `<h3>Q3: Data missing after updating to Privault V3.0</h3>
+            <p>
+            Firstly please update to V3.1 onwards. Othewise, please check whether you previously were using an app with a similar icon like ours, since many users mistake another app for ours and have been sending a lot of query emails mistakenly to us.<br>
+
+            Steps: Open Appstore app > tap your account icon > tap purchased > browse all the similar apps you used to download and might have been using for a while.<br>
+
+            Secondly, if you confirm you are using this app. Please try to relaunch the app, since there is a very rare chance that your data might not be migrated to V3.1 format correctly. Relaunching the app can re-initiate the data migration process. Thirdly, if you were using secondary passcode(previously also known as decoy passcode), your files are still inside the app but you cannot view them for the time being. Please wait for the future release that the data migration feature for this account is available.<br>
+
+            if you still have such issue, please send us an email and we will follow-up with you for a recovery solution.
+            <br>
+            </p><br>`
+            +
+            `<h3>Q4: Solution for irregular passcode after updating to Privaut V3.1</h3>
+             <p>
+            <font color="green">Shortcut:update the app to V4.0 onwards, and follow Q1 to reset your passcode</font>
+            <p>
+            <font color="red">If you don't want to change the passcode, read the following intruction:</font>
+            <br>
+            The passcode mechanism has changed since V3.0.
+            <br>
+            Here are a few examples and please try the new ones according to the following old v.s. new patterns
+            </br>
+            1. old: -0.03141500 -> new:3141500
+            </br>
+            2. old: 1234+4567, 1234-4567,1234x4567,1234/4567 -> new: try 4567 first. If 4567 doesn't work, try the result of respective calculation
+            </br>
+            3. old:0.0000... -> new: send an email to support@binspir.com, we will provide you an instruction to reset passcode.
+            </p><br>`
+
+;
+    }
+
+    function getSpanishContent() {
+        return `<h3>Q1: "¿Qué pasa si olvido la contraseña?"</h3>
+            <p>
+            1. Actualiza la aplicación a partir de la versión 4.0.<br> 
+            2. Introduzca "911911" en el teclado y verá una list A de ayuda. <br> 
+            3. Haga clic en "Olvidar contraseña?" <br> 
+            4. Si aún no lo ha hecho, establezca y verifique el correo electrónico <br> 
+            5. Haga clic en "Olvidar contraseña?" (de nuevo) recibirá un código de verificación temporal <br> 
+            6. Introduzca la validación en el teclado para iniciar el proceso de reinicio de contraseñas.
+            </p><br>`
+            +
+            `<h3>Q2: ¿Cómo transferir datos a un nuevo dispositivo iPhone/iPad?</h3>
+            <p>
+            1. Durante la activación del nuevo dispositivo, iOS preguntará si se desea utilizar la herramienta de migración de datos incorporada en el sistema para transferir datos como contactos, fotos, configuraciones personales y datos de aplicaciones de terceros. Este proceso copiará los datos de esta aplicación al nuevo dispositivo.  <br>
+            2. Si se prefiere la migración manual, se puede utilizar la página HTTP WiFi incorporada en la aplicación en el antiguo dispositivo para descargar datos a Mac/PC. Luego, utilizando el mismo método en el nuevo dispositivo, cargar los datos en bloque a través de la página HTTP. <br>
+            </p><br>`
+            +
+            `<h3>Q3: faltan datos después de actualizar a Privault V3.0</h3>
+            <p>
+            Primero actualice a V3.1 Uno. Además, compruebe si ha utilizado previamente una aplicación similar a nosotros, ya que muchos usuarios confunden otra aplicación con la nuestra y nos envían un gran número de correos electrónicos de consulta por error.<br>
+
+            Pasos: Abra la aplicación Appstore> toque el icono de su cuenta> toque comprado> busque todas las aplicaciones similares que solía descargar y que podría haber estado usando durante un tiempo.<br>
+
+            En segundo lugar, si confirma que está utilizando esta aplicación. Intente reiniciar la aplicación, ya que es muy poco probable que sus datos no se migren correctamente al formato V3.0. Relanzar la aplicación puede reiniciar el proceso de migración de datos.<br>
+
+            En tercer lugar, si estaba utilizando un código de acceso secundario (anteriormente también conocido como código de acceso de señuelo), sus archivos todavía están dentro de la aplicación, pero no puede verlos por el momento. Espere a que se publique en el futuro que la función de migración de datos para esta cuenta esté disponible.<br>
+
+            Si aún tiene ese problema, envíenos un correo electrónico y nos pondremos en contacto con usted para encontrar una solución de recuperación.
+            <br>
+            </p><br>`
+            +
+            `<h3>Q4: Solución para un código de acceso irregular después de actualizar a Privaut V3.0</h3>
+             <p>
+            <font color = "green" >Acceso rápido: actualizar la aplicación a V4.0, Luego reinicie la contraseña de acuerdo con Q1.</font>
+            <p>
+            <font color = "red" > Si no desea cambiar su contraseña, lea las siguientes instrucciones: </font>
+            <br>
+            El mecanismo criptográfico ha cambiado desde V3. 0
+            <br>
+            El mecanismo del código de acceso ha cambiado desde V3.0.
+            <br>
+            Aquí hay algunos ejemplos y pruebe los nuevos de acuerdo con el siguiente v.s. nuevos patrones
+            </br>
+            1. antiguo: -0.03141500 -> nuevo: 3141500
+            </br>
+            2. antiguo: 1234+4567, 1234-4567,1234x4567,1234/4567 -> nuevo: pruebe primero con 4567. Si 4567 no funciona, pruebe el resultado del cálculo respectivo
+            </br>
+            3. antiguo: 0.0000... -> nuevo: envíe un correo electrónico a support@binspir.com, le proporcionaremos instrucciones para restablecer el código de acceso.
+            </p><br>`
+
+;
+    }
+
+    function getChineseContent() {
+        return  `<h3>Q1:  “如果我忘记了密码怎么办？”</h3>
+            <p>
+            1.将App升级到V4.0及以上版本
+            </br>
+            2.在键盘上输入“911911”，你会看到一个帮助列表
+            </br>
+            3.点击“忘记口令？”
+            </br>
+            4.如果尚未设置，请先设置并验证电子邮件
+            </br>
+            5.点击“忘记口令？”（再次）您将收到一个临时验证码
+            </br>
+            6.在键盘上输入验证以启动密码重置过程。
+            </br>
+            </p>
+            </br>`
+            +
+            `<h3>Q2:  如何迁移数据到新的iPhone/iPad设备?</h3>
+            <p>
+                1.iOS在新设备激活时,会提示是否使用系统自带的数据迁移工具迁移诸如联系人,相册,个人设置和第三方应用数据等,这个过程会将此App内的数据一并拷贝到新设备;
+                </br>
+                2. 如需自行迁移,可在旧设备中使用App内置WiFi的HTTP页面下载数据到Mac/PC, 并在新设备采用同样方式, 通过HTTP页面批量上传.
+            </p>
+            </br>`
+            +
+            `<h3>Q3: 更新到 Privault V3.0 后数据丢失</h3>
+                <p>
+                首先请更新到V3.1以上版本重新查看数据是否可见.
+                否则，请检查您之前是否使用了与我们类似图标的应用，因为许多用户误认为另一个应用是我们的，并且错误地向我们发送了大量查询电子邮件。
+                </p><p>
+                首先，请检查您之前是否使用过与我们的图标类似的应用程序，因为许多用户将另一个应用程序误认为是我们的应用程序，并且错误地向我们发送了大量查询电子邮件。
+                </p><p>
+                步骤：打开 Appstore 应用程序 > 点击您的帐户图标 > 点击购买 > 浏览您曾经下载并可能已经使用了一段时间的所有类似应用程序。
+                </p><p>
+                其次，如果您确认您正在使用这个应用程序。请尝试重新启动应用程序，因为您的数据可能无法正确迁移到 V3.0 格式的可能性非常小。重新启动应用程序可以重新启动数据迁移过程。
+                </p><p>
+                第三，如果您使用的是副密码（以前也称为伪装密码），您的文件仍在应用程序中，但您暂时无法查看它们。请等待此帐户的数据迁移功能可用的未来版本。
+                </p><p>
+                如果您仍然遇到此类问题，请给我们发送电子邮件，我们将与您联系以寻求恢复解决方案。
+                </p>
+            </br>`
+            +
+            `<h3>Q4: 更新到Privaut V3.0后对不规则密码的解决方法</h3>
+                <p>
+                <font color='green'>捷径：将应用程序更新到V4，按照Q1重置密码</font>
+                <p>
+                <font color='red'>如果不想更改密码，请阅读以下说明：</font>
+                <br>
+                自 V3.0 以来，密码机制发生了变化。
+                <br>
+                这里有几个例子，请根据下面的模式新旧对比,使用新模式密码
+                </br>
+                1. 旧：-0.03141500 -> 新：3141500
+                </br>
+                2. 旧：1234+4567, 1234-4567,1234x4567,1234/4567 -> 新：先尝试 4567。 如果4567不起作用，请尝试各自计算的结果
+                </br>
+                3. 旧:0.0000... -> 新: 发送邮件至support@binspir.com，我们将为您提供重置密码的说明。
+                </p>
+            `
+            ;
+    }
+
+    function getJapaneseContent() {
+        return `<h3> Q1: 「パスコードを忘れたらどうなりますか？」</h3>
+                    <p>
+                    1. アプリをバージョン4.0以降に更新してください
+                    </br>
+                    2. キーパッドに“911911”を入力し、ヘルプリストが表示されます
+                    <br/>
+                    3. パスコードを忘れて
+                    <br/>
+                    4. セットアップをして、まだセットアップしていない場合は、最初のメールを確認
+                    <br/>
+                    5. “パスコードを忘れる？”(そして)あなたは一時的な検証コードを受け取ります
+                    <br/>
+                    6. パスコードのリセット処理を開始するためにキーパッドの検証を入力します。
+                    <p><br>
+                `
+        +
+                `<h3>Q2: 新しいiPhone/iPadデバイスにデータを移行する方法は？</h3>
+                    1. 新しいデバイスのアクティベーション時に、iOSは連絡先、写真、個人設定、サードパーティアプリのデータなどを含むデータを転送するためにシステムに組み込まれたデータ移行ツールを使用するかどうかを確認します。このプロセスにより、このアプリのデータも新しいデバイスにコピーされます。
+                    </br>
+                    2. 手動で移行する場合は、古いデバイスでアプリの内蔵WiFi HTTPページを使用してデータをMac/PCにダウンロードし、次に新しいデバイスでも同じ方法でHTTPページを使用してデータを一括でアップロードします。
+                    </p><br>
+                `
+        +
+                `<h3> Q3：PrivaultV3.0にアップデートした後にデータが欠落しています</h3>
+                    <p>
+                    まず、V3.1以降に更新して、データが表示されているかどうかを再確認してください。
+                    そうでない場合は、多くのユーザーが別のアプリケーションが私たちのものだと勘違いし、クエリーのEメールを誤って送信しているため、以前に私たちと似たアイコンのアプリケーションを使用していたかどうかを確認してください。
+                    </p>
+                    <p>
+                    まず、以前に私たちのようなアイコンのアプリを使用していたかどうかを確認してください。多くのユーザーが別のアプリを私たちのアプリと間違え、多くのクエリメールを誤って私たちに送信してきました。
+                    </p><p>
+                    手順：Appstoreアプリを開きます>アカウントアイコンをタップします>購入済みをタップします>ダウンロードに使用し、しばらく使用していた可能性のある同様のアプリをすべて参照します。
+                    </p><p>
+                    次に、このアプリを使用していることを確認した場合。データがV3.0形式に正しく移行されない可能性は非常に低いため、アプリを再起動してみてください。アプリを再起動すると、データ移行プロセスを再開できます。
+                    </p><p>
+                    第3に、セカンダリパスコード（以前はおとりパスコードとも呼ばれていました）を使用していた場合、ファイルはアプリ内にありますが、当面は表示できません。このアカウントのデータ移行機能が利用可能になる将来のリリースをお待ちください。
+                    </p><p>
+                    それでも問題が解決しない場合は、メールでご連絡ください。復旧方法についてフォローアップいたします。
+                    </p><br>
+                `
+        +
+                `<h3> Q4：PrivautV3.0にアップデートした後の不規則なパスコードの解決策</h3>
+                    <p>
+                    <font color='green'>近道:アプリケーションをV 4.0に更新し、Q1に従ってパスワードをリセット</font>
+                    </p>
+                    <p>
+                    ここにいくつかの例があります。次の古いv.sに従って新しいものを試してください。 新しいパターン
+                    </br>
+                    1.古い：-0.03141500->新しい：3141500
+                    </br>
+                    2.古い：1234 + 4567、1234-4567、1234x4567、1234 / 4567->新しい：最初に4567を試してください。 4567が機能しない場合は、それぞれの計算結果を試してください
+                    </br>
+                    3. 古い：0.0000 ...-> 新しい：support@binspir.comに電子メールを送信します。パスコードをリセットする手順を提供します。
+                </p>
+                <br>
+                `
+        ;
+    }
+
+    function getTraditionalChineseContent() {
+        return `
+                <h3>Q1:「如果我忘記了密碼怎麼辦？」</h3>
+                <p>
+                1.將應用程式更新至版本4.0或以上
+                </br>
+                2.在鍵盤上輸入「911911」，你會看到一個幫助列表
+                </br>
+                3.點擊「忘記口令？」
+                </br>
+                4.如果尚未設置，請先設置並驗證電子郵件
+                </br>
+                5.點擊「忘記口令？」（再次）您將收到一個臨時驗證碼
+                </br>
+                6.在鍵盤上輸入驗證以啓動密碼重置過程。
+                </br>
+                </p>
+                </br>
+                `
+                +
+                `
+                <h3>Q2: 如何將數據遷移到新的iPhone/iPad設備？</h3>
+                1. 在新設備激活期間，iOS將提示是否使用系統內建的數據遷移工具來遷移數據，例如聯繫人、照片、個人設置和第三方應用數據等。此過程將把此應用內的數據一併複製到新設備；
+                </br>
+                2. 如需自行遷移，可在舊設備中使用應用內置的WiFi HTTP頁面將數據下載到Mac/PC，然後在新設備中以相同方式通過HTTP頁面批量上傳。
+                </p>
+                </br>
+                `
+                +
+                `
+                <h3>Q3: 更新到 Privault V3.0 後數據丟失</h3>
+                <p>
+                首先請更新到V3. 1以上版本重新查看數據是否可見.
+                否則，請檢查您之前是否使用了與我們類似圖標的應用，因為許多用戶誤認為另一個應用是我們的，並且錯誤地向我們發送了大量査詢電子郵件。
+                </p>
+                <p>
+                首先，請檢查您之前是否使用過與我們的圖標類似的應用程序，因為許多用戶將另一個應用程序誤認為是我們的應用程序，並且錯誤地向我們發送了大量查詢電子郵件。
+                </p>
+                <p>
+                步驟：打開 Appstore 應用程序 > 點擊您的帳戶圖標 > 點擊購買 > 瀏覽您曾經下載並可能已經使用了一段時間的所有類似應用程序。
+                </p>
+                <p>
+                其次，如果您確認您正在使用這個應用程序。請嘗試重新啓動應用程序，因為您的數據可能無法正確遷移到 V3.0 格式的可能性非常小。重新啓動應用程序可以重新啓動數據遷移過程。
+                </p>
+                <p>
+                第三，如果您使用的是副密碼（以前也稱為偽裝密碼），您的文件仍在應用程序中，但您暫時無法查看它們。請等待此帳戶的數據遷移功能可用的未來版本。
+                </p>
+                <p>
+                如果您仍然遇到此類問題，請給我們發送電子郵件，我們將與您聯繫以尋求恢復解決方案。
+                </p>
+                </br>
+                `
+                +
+                `
+                <h3>Q4:更新到Privaut V3.0後對不規則密碼的解決方法</h3>
+                <p>
+                <font color='green'>捷徑：將應用程序更新到V4，按照Q1重置密碼</font>
+                <p>
+                <font color='red'>如果不想更改密碼，請閱讀以下說明：</font>
+                <br>
+                自V3以來，密碼機制發生了變化。 0
+                <br>
+                這裡有幾個例子，請根據以下舊的v.s.新模式嘗試新的
+                </br>
+                自 V3.0 以來，密碼機制發生了變化。
+                <br>
+                這裡有幾個例子，請根據下面的模式新舊對比,使用新模式密碼
+                </br>
+                1. 舊：-0.03141500 -> 新：3141500
+                </br>
+                2. 舊：1234+4567, 1234-4567,1234x4567,1234/4567 -> 新：先嘗試 4567。 如果4567不起作用，請嘗試各自計算的結果
+                </br>
+                3. 舊:0.0000... -> 新: 發送郵件至support@binspir.com，我們將為您提供重置密碼的說明。
+                </p>
+                </br>
+                `
+        ;
+    }
 
 
-<h2>English FAQ</h2>
+    function getMoreContent() {
+    return `<h3><br>MORE</h3>`
+            + 
+            `<p>This page will be continiously updated.<br>
+            If you have any questions or suggestions, contact us at support@binspir.com<\p>` ;
+    }
 
-<h3>Q1:Solution for irregular passcode after updating to Privaut V3.1</h3>
-<p>
-<font color="green">Shortcut:update the app to V4.0 onwards, and follow Q3 to reset your passcode</font>
-<p>
-<font color="red">If you don't want to change the passcode, read the following intruction:</font>
-<br>
-The passcode mechanism has changed since V3.0.
-<br>
-Here are a few examples and please try the new ones according to the following old v.s. new patterns
-</br>
-1. old: -0.03141500 -> new:3141500
-</br>
-2. old: 1234+4567, 1234-4567,1234x4567,1234/4567 -> new: try 4567 first. If 4567 doesn't work, try the result of respective calculation
-</br>
-3. old:0.0000... -> new: send an email to support@binspir.com, we will provide you an instruction to reset passcode.
-</p>
+    setInitialLanguage();
+</script>
 
-<h3>Q2:Data missing after updating to Privault V3.0</h3>
-<p>
-Firstly please update to V3.1 onwards. Othewise, please check whether you previously were using an app with a similar icon like ours, since many users mistake another app for ours and have been sending a lot of query emails mistakenly to us.
-</p><p>
-Steps: Open Appstore app > tap your account icon > tap purchased > browse all the similar apps you used to download and might have been using for a while.
-</p><p>
-Secondly, if you confirm you are using this app. Please try to relaunch the app, since there is a very rare chance that your data might not be migrated to V3.1 format correctly. Relaunching the app can re-initiate the data migration process. 
-
-Thirdly, if you were using secondary passcode(previously also known as decoy passcode), your files are still inside the app but you cannot view them for the time being. Please wait for the future release that the data migration feature for this account is available.
-</p><p>
-if you still have such issue, please send us an email and we will follow-up with you for a recovery solution.
-</p>
-
-<h3>Q3. "What if I forget the passcode?"</h3>
-1. Update the App to V4.0 onwards.
-</br>
-2. Enter "911911" on the keypad and you will see a help list. 
-</br>
-3. Tap "Forget Passcode?" 
-</br>
-4. Setup and verify an email first if you haven't setup yet 
-</br>
-5. Tap "Forget Passcode?" (again) and you will receive a temporary verification code 
-</br>
-6. Enter the verification on the keypad to initiate the passcode reset process.
-</p>
-
-<h3>Q4: How to transfer data to a new iPhone/iPad device?</h3>
-1. During the activation of the new device, iOS will prompt whether to use the system's built-in data migration tool to transfer data such as contacts, photos, personal settings, and third-party app data. This process will copy the data from this app to the new device as well.
-</br>
-2. For manual migration, you can use the app's built-in WiFi HTTP page on the old device to download data to Mac/PC. Then, using the same method on the new device, upload the data in bulk through the HTTP page.
-</p>
-
-
-<br><br><br>
-<h2> Español FAQ</h2>
-<h3> Q1: Solución para un código de acceso irregular después de actualizar a Privaut V3.0 </h3>
-<p>
-<font color = "green" >Acceso rápido: actualizar la aplicación a V4.0, Luego reinicie la contraseña de acuerdo con Q3.</font>
-<p>
-<font color = "red" > Si no desea cambiar su contraseña, lea las siguientes instrucciones: </font>
-<br>
-El mecanismo criptográfico ha cambiado desde V3. 0
-<br>
-El mecanismo del código de acceso ha cambiado desde V3.0.
-<br>
-Aquí hay algunos ejemplos y pruebe los nuevos de acuerdo con el siguiente v.s. nuevos patrones
-</br>
-1. antiguo: -0.03141500 -> nuevo: 3141500
-</br>
-2. antiguo: 1234+4567, 1234-4567,1234x4567,1234/4567 -> nuevo: pruebe primero con 4567. Si 4567 no funciona, pruebe el resultado del cálculo respectivo
-</br>
-3. antiguo: 0.0000... -> nuevo: envíe un correo electrónico a support@binspir.com, le proporcionaremos instrucciones para restablecer el código de acceso.
-</p>
-
-<h3> Q2: faltan datos después de actualizar a Privault V3.0 </h3>
-<p>
-<p>
-Primero actualice a V3.1 Uno.
-Además, compruebe si ha utilizado previamente una aplicación similar a nosotros, ya que muchos usuarios confunden otra aplicación con la nuestra y nos envían un gran número de correos electrónicos de consulta por error.
-</p> 
-<p>
-Pasos: Abra la aplicación Appstore> toque el icono de su cuenta> toque comprado> busque todas las aplicaciones similares que solía descargar y que podría haber estado usando durante un tiempo.
-</p> <p>
-En segundo lugar, si confirma que está utilizando esta aplicación. Intente reiniciar la aplicación, ya que es muy poco probable que sus datos no se migren correctamente al formato V3.0. Relanzar la aplicación puede reiniciar el proceso de migración de datos.
-</p> <p>
-En tercer lugar, si estaba utilizando un código de acceso secundario (anteriormente también conocido como código de acceso de señuelo), sus archivos todavía están dentro de la aplicación, pero no puede verlos por el momento. Espere a que se publique en el futuro que la función de migración de datos para esta cuenta esté disponible.
-</p> <p>
-Si aún tiene ese problema, envíenos un correo electrónico y nos pondremos en contacto con usted para encontrar una solución de recuperación.
-</p>
-<h3> Q3. "¿Qué pasa si olvido la contraseña?" </h3>
-1. Actualiza la aplicación a partir de la versión 4.0. 
-</br>
-2. Introduzca "911911" en el teclado y verá una list A de ayuda.
-</br>
-3. Haga clic en "Olvidar contraseña?"
-</br>
-4. Si aún no lo ha hecho, establezca y verifique el correo electrónico
-</br>
-5. Haga clic en "Olvidar contraseña?" (de nuevo) recibirá un código de verificación temporal
-</br>
-6. Introduzca la validación en el teclado para iniciar el proceso de reinicio de contraseñas.
-</p>
-<h3>Q4: ¿Cómo transferir datos a un nuevo dispositivo iPhone/iPad?</h3>
-1.Durante la activación del nuevo dispositivo, iOS preguntará si se desea utilizar la herramienta de migración de datos incorporada en el sistema para transferir datos como contactos, fotos, configuraciones personales y datos de aplicaciones de terceros. Este proceso copiará los datos de esta aplicación al nuevo dispositivo.
-</br>
-2. Si se prefiere la migración manual, se puede utilizar la página HTTP WiFi incorporada en la aplicación en el antiguo dispositivo para descargar datos a Mac/PC. Luego, utilizando el mismo método en el nuevo dispositivo, cargar los datos en bloque a través de la página HTTP.
-</p>
-
-<br><br><br>
-<h2>中文FAQ</h2>
-<h3>Q1:更新到Privaut V3.0后对不规则密码的解决方法</h3>
-<p>
-<font color='green'>捷径：将应用程序更新到V4，按照Q3重置密码</font>
-<p>
-<font color='red'>如果不想更改密码，请阅读以下说明：</font>
-<br>
-自 V3.0 以来，密码机制发生了变化。
-<br>
-这里有几个例子，请根据下面的模式新旧对比,使用新模式密码
-</br>
-1. 旧：-0.03141500 -> 新：3141500
-</br>
-2. 旧：1234+4567, 1234-4567,1234x4567,1234/4567 -> 新：先尝试 4567。 如果4567不起作用，请尝试各自计算的结果
-</br>
-3. 旧:0.0000... -> 新: 发送邮件至support@binspir.com，我们将为您提供重置密码的说明。
-</p>
-
-<h3>Q2：更新到 Privault V3.0 后数据丢失</h3>
-<p>
-首先请更新到V3.1以上版本重新查看数据是否可见.
-否则，请检查您之前是否使用了与我们类似图标的应用，因为许多用户误认为另一个应用是我们的，并且错误地向我们发送了大量查询电子邮件。
-</p><p>
-首先，请检查您之前是否使用过与我们的图标类似的应用程序，因为许多用户将另一个应用程序误认为是我们的应用程序，并且错误地向我们发送了大量查询电子邮件。
-</p><p>
-步骤：打开 Appstore 应用程序 > 点击您的帐户图标 > 点击购买 > 浏览您曾经下载并可能已经使用了一段时间的所有类似应用程序。
-</p><p>
-其次，如果您确认您正在使用这个应用程序。请尝试重新启动应用程序，因为您的数据可能无法正确迁移到 V3.0 格式的可能性非常小。重新启动应用程序可以重新启动数据迁移过程。
-</p><p>
-第三，如果您使用的是副密码（以前也称为伪装密码），您的文件仍在应用程序中，但您暂时无法查看它们。请等待此帐户的数据迁移功能可用的未来版本。
-</p><p>
-如果您仍然遇到此类问题，请给我们发送电子邮件，我们将与您联系以寻求恢复解决方案。
-</p>
-
-<h3>Q3.“如果我忘记了密码怎么办？”</h3>
-<p>
-1.将App升级到V4.0及以上版本
-</br>
-2.在键盘上输入“911911”，你会看到一个帮助列表
-</br>
-3.点击“忘记口令？”
-</br>
-4.如果尚未设置，请先设置并验证电子邮件
-</br>
-5.点击“忘记口令？”（再次）您将收到一个临时验证码
-</br>
-6.在键盘上输入验证以启动密码重置过程。
-</br>
-</p>
-
-<h3>Q4：如何迁移数据到新的iPhone/iPad设备?</h3>
-1.iOS在新设备激活时,会提示是否使用系统自带的数据迁移工具迁移诸如联系人,相册,个人设置和第三方应用数据等,这个过程会将此App内的数据一并拷贝到新设备;
-</br>
-2. 如需自行迁移,可在旧设备中使用App内置WiFi的HTTP页面下载数据到Mac/PC, 并在新设备采用同样方式, 通过HTTP页面批量上传.
-</p>
-
-<br><br><br>
-<h2>傳統中文FAQ</h2>
-<h3>Q1:更新到Privaut V3.0後對不規則密碼的解決方法</h3>
-<p>
-<font color='green'>捷徑：將應用程序更新到V4，按照Q3重置密碼</font>
-<p>
-<font color='red'>如果不想更改密碼，請閱讀以下說明：</font>
-<br>
-自V3以來，密碼機制發生了變化。 0
-<br>
-這裡有幾個例子，請根據以下舊的v.s.新模式嘗試新的
-</br>
-自 V3.0 以來，密碼機制發生了變化。
-<br>
-這裡有幾個例子，請根據下面的模式新舊對比,使用新模式密碼
-</br>
-1. 舊：-0.03141500 -> 新：3141500
-</br>
-2. 舊：1234+4567, 1234-4567,1234x4567,1234/4567 -> 新：先嘗試 4567。 如果4567不起作用，請嘗試各自計算的結果
-</br>
-3. 舊:0.0000... -> 新: 發送郵件至support@binspir.com，我們將為您提供重置密碼的說明。
-</p>
-
-<h3>Q2：更新到 Privault V3.0 後數據丟失</h3>
-<p>
-首先請更新到V3. 1以上版本重新查看數據是否可見.
-否則，請檢查您之前是否使用了與我們類似圖標的應用，因為許多用戶誤認為另一個應用是我們的，並且錯誤地向我們發送了大量査詢電子郵件。
-</p>
-<p>
-首先，請檢查您之前是否使用過與我們的圖標類似的應用程序，因為許多用戶將另一個應用程序誤認為是我們的應用程序，並且錯誤地向我們發送了大量查詢電子郵件。
-</p>
-<p>
-步驟：打開 Appstore 應用程序 > 點擊您的帳戶圖標 > 點擊購買 > 瀏覽您曾經下載並可能已經使用了一段時間的所有類似應用程序。
-</p>
-<p>
-其次，如果您確認您正在使用這個應用程序。請嘗試重新啓動應用程序，因為您的數據可能無法正確遷移到 V3.0 格式的可能性非常小。重新啓動應用程序可以重新啓動數據遷移過程。
-</p>
-<p>
-第三，如果您使用的是副密碼（以前也稱為偽裝密碼），您的文件仍在應用程序中，但您暫時無法查看它們。請等待此帳戶的數據遷移功能可用的未來版本。
-</p>
-<p>
-如果您仍然遇到此類問題，請給我們發送電子郵件，我們將與您聯繫以尋求恢復解決方案。
-</p>
-
-<h3>Q3.「如果我忘記了密碼怎麼辦？」</h3>
-<p>
-1.將應用程式更新至版本4.0或以上
-</br>
-2.在鍵盤上輸入「911911」，你會看到一個幫助列表
-</br>
-3.點擊「忘記口令？」
-</br>
-4.如果尚未設置，請先設置並驗證電子郵件
-</br>
-5.點擊「忘記口令？」（再次）您將收到一個臨時驗證碼
-</br>
-6.在鍵盤上輸入驗證以啓動密碼重置過程。
-</br>
-</p>
-
-
-<h3>Q4: 如何將數據遷移到新的iPhone/iPad設備？</h3>
-1. 在新設備激活期間，iOS將提示是否使用系統內建的數據遷移工具來遷移數據，例如聯繫人、照片、個人設置和第三方應用數據等。此過程將把此應用內的數據一併複製到新設備；
-</br>
-2. 如需自行遷移，可在舊設備中使用應用內置的WiFi HTTP頁面將數據下載到Mac/PC，然後在新設備中以相同方式通過HTTP頁面批量上傳。
-</p>
-
-
-<br><br><br>
-<h2>日本語FAQ </h2>
-<h3> Q1：PrivautV3.0にアップデートした後の不規則なパスコードの解決策</h3>
-<p>
-<font color='green'>近道:アプリケーションをV 4.0に更新し、Q 3に従ってパスワードをリセット</font>
-</p>
-<p>
-ここにいくつかの例があります。次の古いv.sに従って新しいものを試してください。 新しいパターン
-</br>
-1.古い：-0.03141500->新しい：3141500
-</br>
-2.古い：1234 + 4567、1234-4567、1234x4567、1234 / 4567->新しい：最初に4567を試してください。 4567が機能しない場合は、それぞれの計算結果を試してください
-</br>
-3. 古い：0.0000 ...-> 新しい：support@binspir.comに電子メールを送信します。パスコードをリセットする手順を提供します。
-</p>
-
-
-<h3> Q2：PrivaultV3.0にアップデートした後にデータが欠落しています</h3>
-<p>
-まず、V3.1以降に更新して、データが表示されているかどうかを再確認してください。
-そうでない場合は、多くのユーザーが別のアプリケーションが私たちのものだと勘違いし、クエリーのEメールを誤って送信しているため、以前に私たちと似たアイコンのアプリケーションを使用していたかどうかを確認してください。
-</p>
-<p>
-まず、以前に私たちのようなアイコンのアプリを使用していたかどうかを確認してください。多くのユーザーが別のアプリを私たちのアプリと間違え、多くのクエリメールを誤って私たちに送信してきました。
-</p><p>
-手順：Appstoreアプリを開きます>アカウントアイコンをタップします>購入済みをタップします>ダウンロードに使用し、しばらく使用していた可能性のある同様のアプリをすべて参照します。
-</p><p>
-次に、このアプリを使用していることを確認した場合。データがV3.0形式に正しく移行されない可能性は非常に低いため、アプリを再起動してみてください。アプリを再起動すると、データ移行プロセスを再開できます。
-</p><p>
-第3に、セカンダリパスコード（以前はおとりパスコードとも呼ばれていました）を使用していた場合、ファイルはアプリ内にありますが、当面は表示できません。このアカウントのデータ移行機能が利用可能になる将来のリリースをお待ちください。
-</p><p>
-それでも問題が解決しない場合は、メールでご連絡ください。復旧方法についてフォローアップいたします。
-</p>
-
-
-<h3> Q3. 「パスコードを忘れたらどうなりますか？」</h3>
-<p>
-1. アプリをバージョン4.0以降に更新してください
-</br>
-2. キーパッドに“911911”を入力し、ヘルプリストが表示されます
-<br/>
-3. パスコードを忘れて
-<br/>
-4. セットアップをして、まだセットアップしていない場合は、最初のメールを確認
-<br/>
-5. “パスコードを忘れる？”(そして)あなたは一時的な検証コードを受け取ります
-<br/>
-6. パスコードのリセット処理を開始するためにキーパッドの検証を入力します。
-<p>
-
-<h3>Q4: 新しいiPhone/iPadデバイスにデータを移行する方法は？</h3>
-1. 新しいデバイスのアクティベーション時に、iOSは連絡先、写真、個人設定、サードパーティアプリのデータなどを含むデータを転送するためにシステムに組み込まれたデータ移行ツールを使用するかどうかを確認します。このプロセスにより、このアプリのデータも新しいデバイスにコピーされます。
-</br>
-2. 手動で移行する場合は、古いデバイスでアプリの内蔵WiFi HTTPページを使用してデータをMac/PCにダウンロードし、次に新しいデバイスでも同じ方法でHTTPページを使用してデータを一括でアップロードします。
-</p>
-
-
-<br><br><br>
-<h3>MORE</h3>
-<p>This page will be continiously updated.</p>
-<p>If you have any questions or suggestions, contact us at support@binspir.com</p>
 
 </body>
-
 </html>
