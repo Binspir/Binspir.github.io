@@ -13,7 +13,6 @@
             color: #333; 
         }
 
-
         /* Darkmode */
         @media (prefers-color-scheme: dark) {
             body {
@@ -83,11 +82,9 @@
 </footer>
 
 <script>
-   
     var userLanguage = navigator.language || navigator.userLanguage;
     var defaultLanguage = "en"; 
 
-  
     function setInitialLanguage() {
         var supportedLanguages = ["en", "es", "zh-CN", "ja", "zh-TW"];
         var matchedLanguage = supportedLanguages.find(lang => userLanguage.toLowerCase().includes(lang.toLowerCase()));
@@ -173,8 +170,19 @@
             </br>
             3. old:0.0000... -> new: send an email to support@binspir.com, we will provide you an instruction to reset passcode.
             </p><br>`
-
-;
+            +
+            `<h3>Q5: How to migrate data if needed for a mobile phone?</h3>
+            <p>
+            1. iOS comes with a complete set of migration tools that can be used to transfer data between old and new phones, including this application;<br>
+            2. You may use the built-in WiFi server. If there are too many files, they can be transferred to a directory for images, audio, and videos. Note: Files under a disguised password can also be exported, compared, and subsequently deleted from this application.<br>
+            </p><br>`
+            +
+            `<h3>Q6: What to do if videos cannot be exported?</h3>
+            <p>
+            1. For iOS applications, image import and export can be done in full-screen mode > bottom left corner > share export;<br>
+            2. Audio export for iOS applications can be achieved via the WiFi server;<br>
+            3. Due to the requirements of the all-format player, video export for iOS applications can be done through the WiFi server.<br>
+            </p><br>`;
     }
 
     function getSpanishContent() {
@@ -226,22 +234,33 @@
             </br>
             3. antiguo: 0.0000... -> nuevo: envíe un correo electrónico a support@binspir.com, le proporcionaremos instrucciones para restablecer el código de acceso.
             </p><br>`
-
-;
+            +
+            `<h3>Q5: ¿Cómo migrar datos si es necesario para un teléfono móvil?</h3>
+            <p>
+            1. iOS incluye un conjunto completo de herramientas de migración que pueden transferir datos entre teléfonos antiguos y nuevos, incluyendo esta aplicación;<br>
+            2. Es posible que utilice el servidor WiFi integrado. Si hay demasiados archivos, pueden transferirse a un directorio de imágenes, audio y video. Nota: Los archivos bajo una contraseña disfrazada también pueden exportarse, compararse y luego eliminarse de esta aplicación.<br>
+            </p><br>`
+            +
+            `<h3>Q6: ¿Qué hacer si los videos no se pueden exportar?</h3>
+            <p>
+            1. Para aplicaciones iOS, la importación y exportación de imágenes se puede realizar en modo pantalla completa > esquina inferior izquierda > compartir exportación;<br>
+            2. La exportación de audio para aplicaciones iOS puede realizarse a través del servidor WiFi;<br>
+            3. Debido a los requisitos del reproductor multiformato, la exportación de video para aplicaciones iOS puede hacerse mediante el servidor WiFi.<br>
+            </p><br>`;
     }
 
     function getChineseContent() {
-        return  `<h3>Q1:  “如果我忘记了密码怎么办？”</h3>
+        return  `<h3>Q1:  "如果我忘记了密码怎么办？"</h3>
             <p>
             1.将App升级到V4.0及以上版本
             </br>
-            2.在键盘上输入“911911”，你会看到一个帮助列表
+            2.在键盘上输入"911911"，你会看到一个帮助列表
             </br>
-            3.点击“忘记口令？”
+            3.点击"忘记口令？"
             </br>
             4.如果尚未设置，请先设置并验证电子邮件
             </br>
-            5.点击“忘记口令？”（再次）您将收到一个临时验证码
+            5.点击"忘记口令？"（再次）您将收到一个临时验证码
             </br>
             6.在键盘上输入验证以启动密码重置过程。
             </br>
@@ -289,8 +308,20 @@
                 </br>
                 3. 旧:0.0000... -> 新: 发送邮件至support@binspir.com，我们将为您提供重置密码的说明。
                 </p>
-            `
-            ;
+            </br>`
+            +
+            `<h3>Q5: 如果手机需要迁移数据，怎么做？</h3>
+            <p>
+            1. iOS自带一套完整的迁移工具，可用于迁移新旧手机的数据，包括此应用；<br>
+            2. 您可能会使用内置的WiFi服务器。如果文件太多，可以将其转移到图片、音频和视频目录中。注意，伪装口令下的文件也可以导出，然后进行对比，后续可删除此应用。<br>
+            </p><br>`
+            +
+            `<h3>Q6: 发现视频导不出去怎么办？</h3>
+            <p>
+            1. iOS应用的图片导入导出支持全屏模式 > 左下角 > 分享导出；<br>
+            2. iOS应用的音频导出可以通过WiFi服务器实现；<br>
+            3. 由于全能播放器的要求，iOS应用的视频导出可以通过WiFi服务器完成。<br>
+            </p><br>`;
     }
 
     function getJapaneseContent() {
@@ -298,13 +329,13 @@
                     <p>
                     1. アプリをバージョン4.0以降に更新してください
                     </br>
-                    2. キーパッドに“911911”を入力し、ヘルプリストが表示されます
+                    2. キーパッドに"911911"を入力し、ヘルプリストが表示されます
                     <br/>
                     3. パスコードを忘れて
                     <br/>
                     4. セットアップをして、まだセットアップしていない場合は、最初のメールを確認
                     <br/>
-                    5. “パスコードを忘れる？”(そして)あなたは一時的な検証コードを受け取ります
+                    5. "パスコードを忘れる？"(そして)あなたは一時的な検証コードを受け取ります
                     <br/>
                     6. パスコードのリセット処理を開始するためにキーパッドの検証を入力します。
                     <p><br>
@@ -350,7 +381,19 @@
                 </p>
                 <br>
                 `
-        ;
+        +
+                `<h3>Q5: モバイルフォンのデータ移行が必要な場合、どうすればよいですか？</h3>
+                <p>
+                1. iOSには新旧の携帯電話間でデータを移行するための完全なツールセットが付属しており、本アプリも含まれます；<br>
+                2. 内蔵WiFiサーバーを使用する場合があります。ファイルが多すぎる場合は、画像、オーディオ、ビデオディレクトリに転送できます。注：偽装パスワード下のファイルもエクスポートして比較でき、その後本アプリを削除できます。<br>
+                </p><br>`
+        +
+                `<h3>Q6: 動画がエクスポートできない場合はどうすればよいですか？</h3>
+                <p>
+                1. iOSアプリの画像インポート/エクスポートは全画面モード > 左下 > 共有エクスポートでサポートされています；<br>
+                2. iOSアプリのオーディオエクスポートはWiFiサーバー経由で行えます；<br>
+                3. オールインワンプレーヤーの要件により、iOSアプリのビデオエクスポートはWiFiサーバー経由で行えます。<br>
+                </p><br>`;
     }
 
     function getTraditionalChineseContent() {
@@ -429,20 +472,29 @@
                 </p>
                 </br>
                 `
-        ;
+                +
+                `<h3>Q5: 如果手機需要遷移數據，怎麼做？</h3>
+                <p>
+                1. iOS自帶一套完整的遷移工具，可用於遷移新舊手機的數據，包括此應用；<br>
+                2. 您可能會使用內置的WiFi服務器。如果文件太多，可以將其轉移到圖片、音頻和視頻目錄中。注意，偽裝口令下的文件也可以導出，然後進行對比，後續可刪除此應用。<br>
+                </p><br>`
+                +
+                `<h3>Q6: 發現視頻導不出去怎麼辦？</h3>
+                <p>
+                1. iOS應用的圖片導入導出支持全屏模式 > 左下角 > 分享導出；<br>
+                2. iOS應用的音頻導出可以通過WiFi服務器實現；<br>
+                3. 由於全能播放器的要求，iOS應用的視頻導出可以通過WiFi服務器完成。<br>
+                </p><br>`;
     }
-
 
     function getMoreContent() {
     return `<h3><br>MORE</h3>`
             + 
             `<p>This page will be continiously updated.<br>
-            If you have any questions or suggestions, contact us at support@binspir.com<\p>` ;
+            If you have any questions or suggestions, contact us at support@binspir.com</p>` ;
     }
 
     setInitialLanguage();
 </script>
-
-
 </body>
 </html>
